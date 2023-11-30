@@ -78,3 +78,12 @@ source .venv/bin/activate # Mac
 ```
 
 If you don't need this anymore, just delete the entire folder. 
+
+
+## 開発項目
+
+* Authenticatorの日本語化
+* 本登録前に同意取得するメカニズム
+* 参加登録機能の充実（メールアドレスが同じ場合はリセットにするなど）
+* ログイン後画面
+* アンケート一覧や回答済みと回答していないアンケートを分けた表示
