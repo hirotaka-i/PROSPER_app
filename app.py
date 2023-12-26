@@ -29,8 +29,12 @@ authenticator.login('PROSPERログイン', 'main')
 
 if st.session_state["authentication_status"]:
     authenticator.logout('Logout', 'main', key='unique_key')
-    st.write(f'Welcome *{st.session_state["name"]}*')
-    st.title('Some content')
+    st.write(f'おかえりなさい *{st.session_state["name"]}*さん')
+    st.title('質問票')
+    st.write('下記の質問票にまだお答えいただいていない方は、お答えください。')
+    st.markdown('[MDS-UPDRS Part I](https://docs.google.com/forms/d/e/1FAIpQLSdVD2MG9y0vPLnKvtblS6BaEGhQQ27hSOcz-9kxCShnYDZYWA/viewform)')
+    st.markdown('[MDS-UPDRS Part II](https://forms.gle/s9rbb3XeHycWV5Fk6)')
+
 
 elif st.session_state["authentication_status"] is False:
     st.warning('''
