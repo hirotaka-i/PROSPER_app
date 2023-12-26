@@ -1,5 +1,18 @@
 # PROSPER_app
 
+File explanation
+
+Original App
+* app.py: main app file
+* requirements.txt: package list
+* config.yaml: user list for the app
+
+Others
+* Dockerfile: To generate docker image for the app
+* app.yaml: app engine setting file (for GCP)
+* LICENSE
+* README.md: this file
+
 ## Description
 
 This is a github repository to develop the PROSPER_app in the streeamlit framework. 
@@ -79,6 +92,61 @@ source .venv/bin/activate # Mac
 
 If you don't need this anymore, just delete the entire folder. 
 
+## Prepare to use Google Cloud Platform
+We will use google cloud platform to deploy the app. Please install the google cloud sdk to your computer. Then, run the following command in the terminal.
+```
+gcloud init
+```
+or in my case,
+```
+~/google-cloud-sdk/bin/gcloud init
+```
+This would enable you to access gcp projects that you created/are invited.
+
+
+## Dockerize
+Now we dockerize the app so that we can deploy it to the cloud. Please install the docker to your computer. Then, run the following command in the terminal. This command automatically look at `Dockerfile` and compose the corresponding Docker image.
+
+```
+docker build -t us-east1.gcr.io/prosper1/prospertop:v1 .
+```
+Please note that I created propser1 project and App Engine was set-up in the us-east1
+
+To test run the docker
+```
+docker run -p 8081:8080 <IMAGE>
+```
+Then go to  http://0.0.0.0:8081 to see the app. (8080 was used in my personal computer so changed to 8081)
+
+
+#### Basic docker function 
+
+```
+# list containers
+docker ps -a
+# remove container
+docker rm <CONTAINER_ID>
+
+# list images
+docker images
+# remove image
+docker images rmi <IMAGE>
+```
+
+## Deploy
+Now deploy the Dockerized app to the App Enging
+
+```
+gcloud app deploy app.yaml
+```
+Or in my case
+```
+~/google-cloud-sdk/bin/gcloud app deploy app.yaml
+```
+
+
+## Reference
+[HOW TO DEPLOY AND SECURE YOUR STREAMLIT APP ON GCP? (artefact)](https://www.artefact.com/blog/how-to-deploy-and-secure-your-streamlit-app-on-gcp/)
 
 ## 開発項目
 

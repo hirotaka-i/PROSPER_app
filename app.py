@@ -25,7 +25,7 @@ def show_registy_widget():
         st.error(e)
 
 # Login widget
-authenticator.login('ログイン', 'main')
+authenticator.login('PROSPERログイン', 'main')
 
 if st.session_state["authentication_status"]:
     authenticator.logout('Logout', 'main', key='unique_key')
