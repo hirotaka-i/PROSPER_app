@@ -5,8 +5,9 @@ WORKDIR /app
 
 EXPOSE 8080
 COPY requirements.txt requirements.txt
+COPY Streamlit-Authenticator-JP Streamlit-Authenticator-JP
 RUN pip install -U pip && pip install -r requirements.txt
-
+RUN pip install Streamlit-Authenticator-JP/.
 # COPY appp code and set working directory
 COPY app.py app.py
 COPY config.yaml config.yaml
