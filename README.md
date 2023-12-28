@@ -7,11 +7,16 @@ Original App
 * requirements.txt: package list
 * config.yaml: user list for the app
 
+Submodule
+* Authenticator package in Japanese ([github link](https://github.com/hirotaka-i/Streamlit-Authenticator-JP))
+
 Others
 * Dockerfile: To generate docker image for the app
 * app.yaml: app engine setting file (for GCP)
 * LICENSE
 * README.md: this file
+* .gitignore: git ignore file
+* .gitmodule: git submodule file
 
 ## Description
 
@@ -19,8 +24,18 @@ This is a github repository to develop the PROSPER_app in the streeamlit framewo
 
 
 ## Installation
+You need to clone with submodules
+```
+git clone --recurese-submodules https://github.com/hirotaka-i/PROSPER_app.git
+```
+
+If you use ordinary clone without --recurese-submodules like the following, then you need to add the submodule manually.
+
 ```
 git clone https://github.com/hirotaka-i/PROSPER_app.git
+cd Streamlit-Authenticator-JP
+git submodule init
+git submodule update
 ```
 
 ## Create and activate pyenv
@@ -97,12 +112,14 @@ We will use google cloud platform to deploy the app. Please install the google c
 ```
 gcloud init
 ```
-or in my case,
-```
-~/google-cloud-sdk/bin/gcloud init
-```
 This would enable you to access gcp projects that you created/are invited.
 
+NOTE: If `gcloud` command doesn't work, you may want to set the path. I would add a symbolic link to the `google-cloud-sdk/bin/gcloud` in the `/usr/local/bin` folder. 
+
+```
+ln -s ~/google-cloud-sdk/bin/gcloud /usr/local/bin/.
+```
+[Reference](https://datawokagaku.com/what_is_path/)
 
 ## Dockerize
 Now we dockerize the app so that we can deploy it to the cloud. Please install the docker to your computer. Then, run the following command in the terminal. This command automatically look at `Dockerfile` and compose the corresponding Docker image.
@@ -130,7 +147,7 @@ docker rm <CONTAINER_ID>
 # list images
 docker images
 # remove image
-docker images rmi <IMAGE>
+docker images rmi <IMAGE>ls 
 ```
 
 ## Deploy
@@ -138,10 +155,6 @@ Now deploy the Dockerized app to the App Enging
 
 ```
 gcloud app deploy app.yaml
-```
-Or in my case
-```
-~/google-cloud-sdk/bin/gcloud app deploy app.yaml
 ```
 
 

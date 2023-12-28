@@ -1,5 +1,6 @@
 
 # Reference: https://github.com/mkhorasani/Streamlit-Authenticator
+# https://zenn.dev/karaage0703/articles/db8c663640c68b
 
 import streamlit as st
 import streamlit_authenticator as stauth
@@ -28,7 +29,7 @@ def show_registy_widget():
 authenticator.login('PROSPERログイン', 'main')
 
 if st.session_state["authentication_status"]:
-    authenticator.logout('Logout', 'main', key='unique_key')
+    authenticator.logout('ログアウト', 'main', key='unique_key')
     st.write(f'おかえりなさい *{st.session_state["name"]}*さん')
     st.title('質問票')
     st.write('下記の質問票にまだお答えいただいていない方は、お答えください。')
@@ -38,14 +39,14 @@ if st.session_state["authentication_status"]:
 
 elif st.session_state["authentication_status"] is False:
     st.warning('''
-[Username]か[Password]が違います'。
+[ユーザーID]か[パスワード]が違います。
 まだ参加されていない場合は、下記の[参加登録]からご登録ください。
                ''')
     show_registy_widget()
 
 elif st.session_state["authentication_status"] is None:
     st.warning('''
-[Username]と[Password]を入れてください.
+[ユーザーID]と[パスワード]を入れてください.
 まだ参加されていない方は、下記の[参加登録]からご登録ください。
                ''')
     show_registy_widget()

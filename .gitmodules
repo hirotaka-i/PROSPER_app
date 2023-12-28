@@ -1,0 +1,3 @@
+[submodule "Streamlit-Authenticator-JP"]
+	path = Streamlit-Authenticator-JP
+	url = https://github.com/hirotaka-i/Streamlit-Authenticator-JP.git
